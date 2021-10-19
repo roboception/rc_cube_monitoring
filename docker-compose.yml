@@ -7,19 +7,19 @@ volumes:
       driver: local
     grafana_data:
       driver: local
-    
+
 services:
   prometheus:
     image: prom/prometheus:v2.30.3
     container_name: prometheus
     volumes:
       - prometheus_data:/prometheus
-      - prometheus_etc:/etc/prometheus
+      - ./prometheus:/etc/prometheus
     ports:
       - "9091:9090"
     extra_hosts:
-      - "host.docker.internal:host-gateway"
-      
+      - "rc_cube.internal:host-gateway"
+
   grafana:
     image: grafana/grafana:8.2.1
     container_name: grafana
