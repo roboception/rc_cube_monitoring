@@ -8,6 +8,10 @@ volumes:
     grafana_data:
       driver: local
 
+networks:
+  back-tier:
+    driver: bridge
+
 services:
   prometheus:
     image: prom/prometheus:v2.30.3
@@ -19,6 +23,8 @@ services:
       - "9091:9090"
     extra_hosts:
       - "rc_cube.internal:host-gateway"
+    networks:
+      - back-tier
 
   grafana:
     image: grafana/grafana:8.2.1
@@ -30,4 +36,5 @@ services:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     ports:
       - "9092:3000"
-
+    networks:
+      - back-tier
