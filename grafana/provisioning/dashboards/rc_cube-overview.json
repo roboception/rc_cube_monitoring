@@ -23,8 +23,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 22,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1634745308429,
+  "iteration": 1640172578264,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -182,8 +181,10 @@
       "pluginVersion": "8.2.1",
       "targets": [
         {
+          "exemplar": true,
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"rc-cube.internal.*\",mode=\"idle\"}[30m])) * 100)",
           "instant": true,
+          "interval": "",
           "legendFormat": "CPU Busy",
           "refId": "A"
         },
@@ -219,13 +220,73 @@
       "type": "bargauge"
     },
     {
+      "datasource": null,
+      "description": "Running UserSpace containers",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 1
+      },
+      "id": 159,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "count(rate(container_last_seen{instance=~\"rc-cube.internal.*\", name!=\"\"}[5m]))",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "containers",
+      "type": "stat"
+    },
+    {
       "columns": [],
       "datasource": null,
       "fontSize": "110%",
       "gridPos": {
         "h": 6,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 1
       },
       "id": 60,
@@ -1852,6 +1913,7 @@
       "steppedLine": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "avg(irate(node_cpu_seconds_total{instance=~\"rc-cube.internal.*\",mode=\"system\"}[30m])) by (instance)",
           "format": "time_series",
           "hide": false,
@@ -2876,6 +2938,427 @@
         "x": 0,
         "y": 55
       },
+      "id": 139,
+      "panels": [],
+      "title": "UserSpace containers",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 56
+      },
+      "id": 141,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sort_desc(sum(rate(container_cpu_usage_seconds_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m])) by (name))",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Container CPU usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 56
+      },
+      "id": 142,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "container_memory_usage_bytes{instance=~\"rc-cube.internal.*\",image!=\"\"}",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Container memory usage",
+      "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 64
+      },
+      "hiddenSeries": false,
+      "id": 143,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:689",
+          "alias": "/.* tx$/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sort_desc(sum by (name) (rate(container_network_receive_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m] ) ))",
+          "interval": "",
+          "legendFormat": "{{ name }} rx",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sort_desc(sum by (name) (rate(container_network_transmit_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m] ) ))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{ name }} tx",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Container network",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:702",
+          "format": "Bps",
+          "label": "transmit（-）/receive（+）",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:703",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 64
+      },
+      "hiddenSeries": false,
+      "id": 144,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:689",
+          "alias": "/.* read$/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(irate(container_fs_writes_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[5m])) by (name)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{ name }} write",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(irate(container_fs_reads_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[5m])) by (name)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{ name }} read",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Container network",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:702",
+          "format": "Bps",
+          "label": "Bytes read (-) / write (+)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:703",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 72
+      },
       "id": 86,
       "panels": [],
       "title": "GPU",
@@ -2918,7 +3401,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 56
+        "y": 73
       },
       "id": 88,
       "links": [],
@@ -2990,7 +3473,7 @@
         "h": 6,
         "w": 3,
         "x": 4,
-        "y": 56
+        "y": 73
       },
       "id": 92,
       "links": [],
@@ -3059,7 +3542,7 @@
         "h": 6,
         "w": 3,
         "x": 7,
-        "y": 56
+        "y": 73
       },
       "id": 103,
       "links": [],
@@ -3109,7 +3592,7 @@
         "h": 6,
         "w": 7,
         "x": 10,
-        "y": 56
+        "y": 73
       },
       "hiddenSeries": false,
       "id": 94,
@@ -3219,7 +3702,7 @@
         "h": 6,
         "w": 7,
         "x": 17,
-        "y": 56
+        "y": 73
       },
       "hiddenSeries": false,
       "id": 105,
@@ -3355,7 +3838,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 59
+        "y": 76
       },
       "id": 90,
       "interval": null,
@@ -3406,7 +3889,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 62
+        "y": 79
       },
       "hiddenSeries": false,
       "id": 96,
@@ -3507,7 +3990,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 62
+        "y": 79
       },
       "hiddenSeries": false,
       "id": 98,
@@ -3611,7 +4094,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 62
+        "y": 79
       },
       "hiddenSeries": false,
       "id": 100,
@@ -3704,7 +4187,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 86
       },
       "id": 40,
       "panels": [],
@@ -3729,7 +4212,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 70
+        "y": 87
       },
       "hiddenSeries": false,
       "id": 10,
@@ -3857,7 +4340,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 77
+        "y": 94
       },
       "hiddenSeries": false,
       "id": 111,
@@ -4018,5 +4501,5 @@
   "timezone": "browser",
   "title": "rc_cube",
   "uid": "u91YKXmWx",
-  "version": 4
+  "version": 1
 }
