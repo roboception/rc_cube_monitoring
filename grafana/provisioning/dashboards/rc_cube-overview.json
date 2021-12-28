@@ -253,7 +253,7 @@
       "id": 159,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
@@ -270,7 +270,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "count(rate(container_last_seen{instance=~\"rc-cube.internal.*\", name!=\"\"}[5m]))",
+          "expr": "count(container_last_seen{instance=~\"rc-cube.internal.*\", name!=\"\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
