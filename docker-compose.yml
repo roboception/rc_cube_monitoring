@@ -15,6 +15,9 @@ services:
       - ./prometheus:/etc/prometheus:ro
     ports:
       - "9091:9090"
+    labels:
+      # tell the rc_cube that all ports mapped to the host (rc_cube) are using http
+      - com.roboception.app.http
     extra_hosts:
       - "rc-cube.internal:host-gateway"
     restart: unless-stopped
@@ -29,4 +32,7 @@ services:
       - ./grafana/provisioning/:/etc/grafana/provisioning/:ro
     ports:
       - "9092:3000"
+    labels:
+      # alternate way to specify the protocol: for a specific way only
+      - com.roboception.app.http.port=9092
     restart: unless-stopped
