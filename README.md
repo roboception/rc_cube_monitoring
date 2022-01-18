@@ -4,9 +4,9 @@ Example deployment of a docker-compose stack in [rc_cube UserSpace](https://doc.
 consisting of
 
 * [Prometheus](https://prometheus.io) configured to scrape the rc_cube
-  * reachable on port 9091
+  * reachable on port 9090
 * [Grafana](https://grafana.com) with an example rc_cube dashboard
-  * reachable on port 9092
+  * reachable on port 8080
 
 At initial login to Grafana use user `admin`, password `admin` and set a new password.
 
