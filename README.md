@@ -8,8 +8,10 @@ consisting of
 * [Grafana](https://grafana.com) with an example rc_cube dashboard
   * reachable on port 8080
 
-At initial login to Grafana use user `admin`, password `admin` and set a new password.
-Then go to Dashboards -> Browse and open the rc_cube dashboard.
+Grafana is configured with anonymous access for viewing only.
+Go to Dashboards -> Browse and open the rc_cube dashboard.
+
+To make changes login to Grafana with user `admin`, password `admin` and set a new password.
 
 In a real production deployment, it is highly advised to setup Grafana to use https!
 
