@@ -41,7 +41,8 @@ scrape_configs:
 
   - job_name: "nvidia-gpu-exporter"
     static_configs:
-      - targets: ["rc-cube.internal:9445"]
+      # rc_cube images up to 26.10 run the exporter on 9445, newer ones on 9835
+      - targets: ["rc-cube.internal:9445", "rc-cube.internal:9835"]
 
   - job_name: "tritonserver-exporter"
     static_configs:
