@@ -3949,12 +3949,14 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "12.0.2",
@@ -3965,7 +3967,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "sort_desc(sum(rate(container_cpu_usage_seconds_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m])) by (name))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m])) by (name)",
           "interval": "",
           "legendFormat": "{{ name }}",
           "refId": "A"
@@ -4050,12 +4052,14 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "12.0.2",
@@ -4165,12 +4169,14 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "12.0.2",
@@ -4181,7 +4187,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "sort_desc(sum by (name) (rate(container_network_receive_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m] ) ))",
+          "expr": "sum by (name) (rate(container_network_receive_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m] ) )",
           "interval": "",
           "legendFormat": "{{ name }} rx",
           "refId": "A"
@@ -4192,7 +4198,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "sort_desc(sum by (name) (rate(container_network_transmit_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m] ) ))",
+          "expr": "sum by (name) (rate(container_network_transmit_bytes_total{instance=~\"rc-cube.internal.*\",image!=\"\"}[1m] ) )",
           "hide": false,
           "interval": "",
           "legendFormat": "{{ name }} tx",
@@ -4292,12 +4298,14 @@
           ],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "12.0.2",
